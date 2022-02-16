@@ -1,0 +1,41 @@
+@startuml
+  class Mastermind {
+    + play()
+  }
+
+  class Board {
+    + setSecretCombination()
+    + proposeCombination()
+  }
+
+  class Result {
+    - colors: Color[]
+    - whites: number
+    - blacks: number
+
+    + toString()
+  }
+
+  class Combination {
+    # colors: Color[]
+  }
+
+  class SecretCombination extends Combination {
+    + {static} random(): SecretCombination
+    + compare(proposedCombination: ProposedCombination): Result
+  }
+
+  class ProposedCombination extends Combination {
+    + read()
+  }
+
+  Mastermind *--> Board
+  Board *-down-> SecretCombination
+  Board ..> ProposedCombination
+  Board *-down-> Result
+
+  SecretCombination ..> ProposedCombination
+  SecretCombination ..> Result
+
+  Result o--> ProposedCombination
+@enduml

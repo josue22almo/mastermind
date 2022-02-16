@@ -1,0 +1,17 @@
+{
+  "mochaExplorer.env": {
+    "NODE_ENV": "test"
+  },
+  "mochaExplorer.require": [
+    "ts-node/register",
+    "reflect-metadata"
+  ],
+  "mochaExplorer.files": "test/**/*.acceptance.test.ts",
+  "mochaExplorer.ignore": "!test/**/*.acceptance.test.ts",
+  "testExplorer.mergeSuites": true,
+  "mochaExplorer.timeout": 60000,
+  "testExplorer.codeLens": true,
+  "testExplorer.gutterDecoration": true,
+  "testExplorer.sort": "byLocationWithSuitesFirst",
+  "typescript.tsdk": "node_modules/typescript/lib",
+}
