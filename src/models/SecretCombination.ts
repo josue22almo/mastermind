@@ -34,7 +34,7 @@ export class SecretCombination extends Combination {
 
   private getBlacks(proposedCombination: ProposedCombination): number {
     let result = 0;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < Combination.TOTAL_NUM_OF_PEGS; i++) {
       if (this.colors[i] === proposedCombination.getColors()[i]) {
         result++;
       }
@@ -45,8 +45,8 @@ export class SecretCombination extends Combination {
   private getWhites(proposedCombination: ProposedCombination): number {
     const visited = [false, false, false, false];
     let result = 0;
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 4; j++) {
+    for (let i = 0; i < Combination.TOTAL_NUM_OF_PEGS; i++) {
+      for (let j = 0; j < Combination.TOTAL_NUM_OF_PEGS; j++) {
         if (this.colors[i] === proposedCombination.getColors()[i]) {
           visited[j] = true;
         } else if (this.colors[i] === proposedCombination.getColors()[j]) {

@@ -4,6 +4,8 @@ import { Result } from "./Result";
 import { SecretCombination } from "./SecretCombination";
 
 export class Board {
+  private static readonly MAX_ATTEMPTS = 10;
+
   private secretCombination!: SecretCombination;
   private results!: Result[];
 
@@ -43,6 +45,6 @@ export class Board {
   }
 
   public isGameOver(): boolean {
-    return this.numOfAttempts() === 10;
+    return this.numOfAttempts() === Board.MAX_ATTEMPTS;
   }
 }
