@@ -34,6 +34,10 @@ export class Board {
     return this.results.slice(-1)[0].succeeded();
   }
 
+  public isOver(): boolean {
+    return !this.isSolved() || this.isGameOver()
+  }
+
   public numOfAttempts(): number {
     return this.results.length;
   }

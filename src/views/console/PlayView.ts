@@ -9,7 +9,7 @@ export class PlayView extends WithBoardConsoleView {
       new BoardView(this.board).render();
       const colors = await new ProposedCombinationView().read();
       this.board.proposeCombination(colors);
-    } while (!this.board.isSolved() || this.board.isGameOver())
+    } while (this.board.isOver())
     new FinishView(this.board).render();
   }
 }
