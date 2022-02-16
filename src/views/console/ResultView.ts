@@ -1,13 +1,12 @@
-import { Result } from "../models/Result";
-import { IO } from "../utils/IO";
+import { Result } from "../../models/Result";
+import { ConsoleView } from "./ConsoleView";
 
-export class ResultView {
+export class ResultView extends ConsoleView {
   private readonly result: Result;
-  private readonly io: IO;
 
   constructor(result: Result) {
+    super();
     this.result = result;
-    this.io = new IO();
   }
 
   public print() {
