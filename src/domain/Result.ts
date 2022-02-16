@@ -1,5 +1,4 @@
 import { Color } from "./Color";
-import { ProposedCombination } from "./ProposedCombination";
 import { IO } from "./utils/IO";
 
 export class Result {
@@ -8,11 +7,11 @@ export class Result {
   private readonly whites: number;
 
   constructor(
-    proposedCombination: ProposedCombination,
+    colors: Color[],
     blacks: number,
     whites: number
   ) {
-    this.colors = proposedCombination.getColors();
+    this.colors = colors;
     this.blacks = blacks;
     this.whites = whites;
   }

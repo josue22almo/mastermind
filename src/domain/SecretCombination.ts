@@ -26,7 +26,7 @@ export class SecretCombination extends Combination {
 
   public compare(proposedCombination: ProposedCombination): Result {
     return new Result(
-      proposedCombination,
+      proposedCombination.getColors(),
       this.getBlacks(proposedCombination),
       this.getWhites(proposedCombination)
     );
