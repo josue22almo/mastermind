@@ -49,12 +49,9 @@ export class SecretCombination extends Combination {
       for (let j = 0; j < 4; j++) {
         if (this.colors[i] === proposedCombination.getColors()[i]) {
           visited[j] = true;
-          break;
-        }
-        if (this.colors[i] === proposedCombination.getColors()[j]) {
+        } else if (this.colors[i] === proposedCombination.getColors()[j]) {
           result++;
           visited[j] = true;
-          break;
         }
       }
     }
