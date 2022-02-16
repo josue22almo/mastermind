@@ -1,4 +1,5 @@
 import { Color } from "../../models/Color";
+import { Combination } from "../../models/Combination";
 import { ConsoleView } from "./ConsoleView";
 
 export class ProposedCombinationView extends ConsoleView {
@@ -13,7 +14,7 @@ export class ProposedCombinationView extends ConsoleView {
   }
 
   private isValid(proposedColors: Color[]) {
-    if (proposedColors.length !== 4) {
+    if (proposedColors.length !== Combination.TOTAL_NUM_OF_PEGS) {
       this.io.writeString('Wrong proposed combination length');
       return false;
     }

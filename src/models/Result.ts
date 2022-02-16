@@ -1,4 +1,5 @@
 import { Color } from "./Color";
+import { Combination } from "./Combination";
 
 export class Result {
   getColors(): Color[] {
@@ -19,7 +20,7 @@ export class Result {
   }
 
   public succeeded(): boolean {
-    return this.blacks === 4;
+    return this.blacks === Combination.TOTAL_NUM_OF_PEGS;
   }
 
   public getBlackPegs() {

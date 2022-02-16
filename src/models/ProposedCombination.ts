@@ -4,7 +4,7 @@ import { Combination } from "./Combination";
 
 export class ProposedCombination extends Combination {
   constructor(colors: Color[]) {
-    assert(colors.length === 4, "ProposedCombination must have 4 colors");
+    assert(colors.length === Combination.TOTAL_NUM_OF_PEGS, "ProposedCombination must have 4 colors");
     super();
     this.colors = colors;
   }
