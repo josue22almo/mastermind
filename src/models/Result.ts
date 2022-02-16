@@ -1,7 +1,9 @@
 import { Color } from "./Color";
-import { IO } from "./utils/IO";
 
 export class Result {
+  getColors(): Color[] {
+    return this.colors;
+  }
   private readonly colors: Color[];
   private readonly blacks: number;
   private readonly whites: number;
@@ -20,8 +22,10 @@ export class Result {
     return this.blacks === 4;
   }
 
-  public print() {
-    const io = new IO();
-    io.writeString(`${this.colors.join('')} --> ${this.blacks} blacks and ${this.whites} whites`)
+  public getBlackPegs() {
+    return this.blacks;
+  }
+  public getWhitePegs() {
+    return this.whites;
   }
 }

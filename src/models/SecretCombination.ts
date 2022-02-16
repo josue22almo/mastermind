@@ -46,12 +46,10 @@ export class SecretCombination extends Combination {
     const visited = [false, false, false, false];
     let result = 0;
     for (let i = 0; i < 4; i++) {
-      if (this.colors[i] === proposedCombination.getColors()[i]) {
-        break;
-      }
       for (let j = 0; j < 4; j++) {
-        if (visited[j]) {
-          continue;
+        if (this.colors[i] === proposedCombination.getColors()[i]) {
+          visited[j] = true;
+          break;
         }
         if (this.colors[i] === proposedCombination.getColors()[j]) {
           result++;

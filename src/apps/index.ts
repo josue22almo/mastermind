@@ -1,4 +1,4 @@
-import { Mastermind } from "../domain/Mastermind";
+import { Mastermind } from "./Mastermind";
 
 async function run() {
   const mastermind = new Mastermind();
