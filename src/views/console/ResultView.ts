@@ -1,7 +1,7 @@
 import { Result } from "../../models/Result";
-import { ConsoleView } from "./ConsoleView";
+import { IOView } from "./IOView";
 
-export class ResultView extends ConsoleView {
+export class ResultView extends IOView {
   private readonly result: Result;
 
   constructor(result: Result) {

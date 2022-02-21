@@ -1,7 +1,7 @@
 import { Board } from "../../models/Board";
-import { ConsoleView } from "./ConsoleView";
+import { IOView } from "./IOView";
 
-export class WithBoardConsoleView extends ConsoleView {
+export class WithBoardConsoleView extends IOView {
   protected readonly board: Board;
 
   constructor(board: Board) {

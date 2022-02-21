@@ -1,7 +1,7 @@
-import { Mastermind } from "./console/Mastermind";
+import { ConsoleMastermind } from "./console/ConsoleMastermind";
 
 async function run() {
-  const mastermind = new Mastermind();
+  const mastermind = new ConsoleMastermind();
   await mastermind.play();
 }
 

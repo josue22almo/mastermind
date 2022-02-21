@@ -1,8 +1,8 @@
 import { Color } from "../../models/Color";
 import { Combination } from "../../models/Combination";
-import { ConsoleView } from "./ConsoleView";
+import { IOView } from "./IOView";
 
-export class ProposedCombinationView extends ConsoleView {
+export class ProposedCombinationView extends IOView {
   public async read(): Promise<Color[]> {
     let proposedColors: Color[] = [];
     do {
