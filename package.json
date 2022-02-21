@@ -6,7 +6,9 @@
   "license": "UNLICENSED",
   "main": "dist/src/apps/index.js",
   "scripts": {
-    "start": "NODE_ENV=production node dist/src/apps/index.js",
+    "start": "NODE_ENV=production node dist/src/apps//console/index.js",
+    "desktop:start": "NODE_ENV=production electron dist/src/apps/desktop/index.js",
+    "predesktop:start": "yarn run prestart && cp index.html dist/src/apps/desktop/index.html",
     "prestart": "yarn run build:only",
     "build:only": "tsc -p tsconfig.json --pretty",
     "lint:only": "eslint --ext .ts .",
@@ -20,6 +22,7 @@
     "@typescript-eslint/eslint-plugin": "5.1.0",
     "@typescript-eslint/eslint-plugin-tslint": "5.1.0",
     "@typescript-eslint/parser": "5.1.0",
+    "electron": "^17.0.1",
     "eslint": "8.0.1",
     "ts-node": "^10.5.0",
     "tslint": "6.1.3",

@@ -27,7 +27,8 @@
     "noStrictGenericChecks": true
   },
   "files": [
-    "src/apps/index.ts",
+    "src/apps/console/index.ts",
+    "src/apps/desktop/index.ts",
   ],
   "exclude": [
     "node_modules",

@@ -1,4 +1,4 @@
-import { ConsoleMastermind } from "./console/ConsoleMastermind";
+import { ConsoleMastermind } from "./ConsoleMastermind";
 
 async function run() {
   const mastermind = new ConsoleMastermind();
