@@ -1,15 +1,28 @@
+import { Combination } from "../../models/Combination";
+import { ICodeBrakerVisitor } from "../../models/ICodeBrakerVisitor";
+import { MachineCodeBraker } from "../../models/MachineCodeBraker";
+import { UserCodeBraker } from "../../models/UserCodeBraker";
 import { BoardView } from "./BoardView";
 import { FinishView } from "./FinishView";
-import { ProposedCombinationView } from "./ProposedCombinationView";
-import { WithBoardConsoleView } from "./WithBoardConsoleView";
+import { ReadCombinationView } from "./ReadCombinationView";
+import { WithGameConsoleView } from "./WithGameConsoleView";
 
-export class PlayView extends WithBoardConsoleView {
-  public async render(): Promise<void> {
+export class PlayView extends WithGameConsoleView implements ICodeBrakerVisitor {
+  public async interact(): Promise<void> {
     do {
-      new BoardView(this.board).render();
-      const colors = await new ProposedCombinationView().read();
-      this.board.proposeCombination(colors);
-    } while (this.board.isOver())
-    new FinishView(this.board).render();
+      new BoardView(this.game).interact();
+      await this.game.addProposedCombination(this);
+    } while (!this.game.isOver())
+    new BoardView(this.game).interact();
+    new FinishView(this.game).interact();
+  }
+
+  public async visitUserCodeBraker(codeBraker: UserCodeBraker): Promise<void> {
+    const colors = await new ReadCombinationView(this.game).read();
+    codeBraker.addCombination(new Combination(colors));
+  }
+
+  visitMachineCodeBraker(codeBraker: MachineCodeBraker): void {
+    codeBraker.addCombination(codeBraker.getRandomCombination());
   }
 }

@@ -10,7 +10,7 @@
         "ts-node/register"
       ],
       "args": [
-        "${workspaceFolder}/src/apps/index.ts",
+        "${workspaceFolder}/src/apps/console/index.ts",
         "--timeout",
         "999999",
         "--colors"

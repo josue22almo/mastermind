@@ -1,47 +1,40 @@
 import { Color } from "./Color";
-import { ProposedCombination } from "./ProposedCombination";
 import { Result } from "./Result";
-import { SecretCombination } from "./SecretCombination";
 
 export class Board {
   private static readonly MAX_ATTEMPTS = 10;
 
-  private secretCombination!: SecretCombination;
-  private results!: Result[];
+  private proposedCombinations!: Color[][];
 
   constructor() {
     this.reset();
   }
 
-  public proposeCombination(colors: Color[]): void {
-    const proposedCombination = new ProposedCombination(colors);
-    const result = this.secretCombination.compare(proposedCombination);
-    this.results.push(result);
+  public addCombination(combination: Color[]): void {
+    this.proposedCombinations.push(combination);
   }
 
-  public getResults(): Result[] {
-    return this.results;
+  public getResults(secretCombination: Color[]): Result[] {
+    return this.proposedCombinations.map(combination => new Result(secretCombination, combination));
   }
 
   public reset(): void {
-    this.secretCombination = new SecretCombination();
-    this.secretCombination.random();
-    this.results = [];
+    this.proposedCombinations = [];
   }
 
-  public isSolved(): boolean {
-    if (this.results.length === 0) {
+  public isSolved(secretCombination: Color[]): boolean {
+    if (this.proposedCombinations.length === 0) {
       return false;
     }
-    return this.results.slice(-1)[0].succeeded();
+    return this.getResults(secretCombination).slice(-1)[0].succeeded();
   }
 
-  public isOver(): boolean {
-    return !this.isSolved() || this.isGameOver()
+  public isOver(secretCombination: Color[]): boolean {
+    return this.isSolved(secretCombination) || this.isGameOver()
   }
 
   public numOfAttempts(): number {
-    return this.results.length;
+    return this.proposedCombinations.length;
   }
 
   public isGameOver(): boolean {

@@ -2,31 +2,48 @@ import { Color } from "./Color";
 import { Combination } from "./Combination";
 
 export class Result {
-  getColors(): Color[] {
-    return this.colors;
-  }
-  private readonly colors: Color[];
-  private readonly blacks: number;
-  private readonly whites: number;
+  private readonly secretCombination: Color[];
+  private readonly proposedCombination: Color[];
 
   constructor(
-    colors: Color[],
-    blacks: number,
-    whites: number
+    secretCombination: Color[],
+    proposedCombination: Color[],
   ) {
-    this.colors = colors;
-    this.blacks = blacks;
-    this.whites = whites;
+    this.secretCombination = secretCombination;
+    this.proposedCombination = proposedCombination;
   }
 
   public succeeded(): boolean {
     return this.blacks === Combination.TOTAL_NUM_OF_PEGS;
   }
 
-  public getBlackPegs() {
-    return this.blacks;
+  public toString(): string {
+    return `${this.proposedCombination.join('')} --> ${this.blacks} blacks and ${this.whites} whites`;
   }
-  public getWhitePegs() {
-    return this.whites;
+
+  private get blacks(): number {
+    let result = 0;
+    for (let i = 0; i < Combination.TOTAL_NUM_OF_PEGS; i++) {
+      if (this.secretCombination[i] === this.proposedCombination[i]) {
+        result++;
+      }
+    }
+    return result;
+  }
+
+  private get whites(): number {
+    const visited = [false, false, false, false];
+    let result = 0;
+    for (let i = 0; i < Combination.TOTAL_NUM_OF_PEGS; i++) {
+      for (let j = 0; j < Combination.TOTAL_NUM_OF_PEGS; j++) {
+        if (this.secretCombination[i] === this.proposedCombination[i]) {
+          visited[j] = true;
+        } else if (this.secretCombination[i] === this.proposedCombination[j]) {
+          result++;
+          visited[j] = true;
+        }
+      }
+    }
+    return result;
   }
 }

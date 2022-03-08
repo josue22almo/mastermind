@@ -1,17 +1,13 @@
 import { Result } from "../../models/Result";
-import { IOView } from "./IOView";
+import { Message } from "../../utils/Message";
 
-export class ResultView extends IOView {
+export class ResultView {
   private readonly result: Result;
-
   constructor(result: Result) {
-    super();
     this.result = result;
   }
 
   public print() {
-    this.io.writeString(
-      `${this.result.getColors().join('')} --> ${this.result.getBlackPegs()} blacks and ${this.result.getWhitePegs()} whites`
-    );
+    Message.RESULT(this.result).writeln();
   }
 }

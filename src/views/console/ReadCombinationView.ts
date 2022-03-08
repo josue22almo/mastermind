@@ -1,12 +1,13 @@
 import { Color } from "../../models/Color";
 import { Combination } from "../../models/Combination";
-import { IOView } from "./IOView";
+import { Message } from "../../utils/Message";
+import { WithGameConsoleView } from "./WithGameConsoleView";
 
-export class ProposedCombinationView extends IOView {
+export class ReadCombinationView extends WithGameConsoleView {
   public async read(): Promise<Color[]> {
     let proposedColors: Color[] = [];
     do {
-      const combination = await this.io.readString('Propose a combination: ');
+      const combination = await this.io.read('Propose a combination: ');
       proposedColors = combination.split('').map(color => color as Color);
     } while (!this.isValid(proposedColors));
 
@@ -15,11 +16,11 @@ export class ProposedCombinationView extends IOView {
 
   private isValid(proposedColors: Color[]) {
     if (proposedColors.length !== Combination.TOTAL_NUM_OF_PEGS) {
-      this.io.writeString('Wrong proposed combination length');
+      Message.WRONG_COMBINATION_LENGTH.writeln();
       return false;
     }
     if (proposedColors.some(color => !Object.values(Color).includes(color))) {
-      this.io.writeString(`Wrong colors, they must be: ${Object.values(Color).join('')}`);
+      Message.WRONG_COMBINATION_COLORS.writeln();
       return false;
     }
     return true;

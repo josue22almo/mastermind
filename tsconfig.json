@@ -28,7 +28,6 @@
   },
   "files": [
     "src/apps/console/index.ts",
-    "src/apps/desktop/index.ts",
   ],
   "exclude": [
     "node_modules",

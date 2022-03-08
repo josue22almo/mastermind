@@ -1,9 +1,10 @@
-import { WithBoardConsoleView } from "./WithBoardConsoleView";
+import { Message } from "../../utils/Message";
+import { WithGameConsoleView } from "./WithGameConsoleView";
 
-export class SecretCombinationView extends WithBoardConsoleView {
-  public render() {
-    this.io.writeString('\n');
-    this.io.writeString(`${this.board.numOfAttempts()} attempt(s):`);
-    this.io.writeString(`****`);
+export class SecretCombinationView extends WithGameConsoleView {
+  public interact() {
+    Message.EMPTY.writeln();
+    Message.NUM_ATTEMPTS(this.game.numOfAttempts()).writeln();
+    Message.SECRET_COMBINATION.writeln();
   }
 }

@@ -1,13 +1,13 @@
-import { Board } from "../models/Board";
+import { Game } from "../models/Game";
 
 export abstract class View {
-  protected readonly board: Board;
+  protected readonly game: Game;
 
-  constructor(board: Board) {
-    this.board = board;
+  constructor(game: Game) {
+    this.game = game;
   }
 
-  public abstract start(): void;
+  public abstract start(): Promise<void>;
 
   public abstract play(): Promise<void>
 
