@@ -6,6 +6,8 @@ import { ResumeController } from "../controllers/ResumeController";
 import { StartController } from "../controllers/StartController";
 
 export abstract class View implements IControllerVisitor {
+  public abstract interact(controller: Controller): Promise<void>;
+
   public abstract visitStartController(controller: StartController): Promise<void>;
 
   public abstract visitInGameController(controller: InGameController): Promise<void>;
@@ -13,6 +15,4 @@ export abstract class View implements IControllerVisitor {
   public abstract visitResumeController(controller: ResumeController): Promise<void>;
 
   public abstract visitNullController(controller: NullController): Promise<void>;
-
-  public abstract interact(controller: Controller): Promise<void>;
 }
