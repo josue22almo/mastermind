@@ -4,8 +4,8 @@ import { WithConsoleView } from "./WithConsoleView";
 
 export class SecretCombinationView extends WithConsoleView {
   public interact(controller: InGameController) {
-    Message.EMPTY.writeln();
-    Message.NUM_ATTEMPTS(controller.numOfAttempts()).writeln();
-    Message.SECRET_COMBINATION.writeln();
+    this.io.writeln(Message.EMPTY.toString());
+    this.io.writeln(Message.NUM_ATTEMPTS(controller.numOfAttempts()).toString());
+    this.io.writeln(Message.SECRET_COMBINATION.toString());
   }
 }

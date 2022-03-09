@@ -6,7 +6,7 @@ import { WithConsoleView } from "./WithConsoleView";
 
 export class StartView extends WithConsoleView {
   public async interact(controler: StartController): Promise<void> {
-    Message.TITLE.writeln();
+    this.io.writeln(Message.TITLE.toString());
     await new AskForPlayersView().interact(controler);
     await new SetSecretCombinationView().interact(controler);
     controler.next();

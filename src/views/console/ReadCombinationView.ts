@@ -16,11 +16,11 @@ export class ReadCombinationView extends WithConsoleView {
 
   private isValid(proposedColors: Color[]) {
     if (proposedColors.length !== Combination.TOTAL_NUM_OF_PEGS) {
-      Message.WRONG_COMBINATION_LENGTH.writeln();
+      this.io.writeln(Message.WRONG_COMBINATION_LENGTH.toString());
       return false;
     }
     if (proposedColors.some(color => !Object.values(Color).includes(color))) {
-      Message.WRONG_COMBINATION_COLORS.writeln();
+      this.io.writeln(Message.WRONG_COMBINATION_COLORS.toString());
       return false;
     }
     return true;

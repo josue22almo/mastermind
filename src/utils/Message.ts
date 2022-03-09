@@ -22,14 +22,6 @@ export class Message {
     this.message = message;
   }
 
-  public write(): void {
-    IO.getInstance().write(this.message);
-  }
-
-  public writeln(): void {
-    IO.getInstance().writeln(this.message);
-  }
-
   public toString(): string {
     return this.message;
   }

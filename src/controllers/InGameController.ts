@@ -11,6 +11,7 @@ export class InGameController extends Controller {
   public isSolved(): boolean {
     return this.game.isSolved();
   }
+
   public async accept(visitor: IControllerVisitor): Promise<void> {
     await visitor.visitInGameController(this);
   }
