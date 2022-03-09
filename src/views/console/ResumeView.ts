@@ -1,12 +1,14 @@
-import { WithGameConsoleView } from "./WithGameConsoleView";
+import { WithConsoleView } from "./WithConsoleView";
 import { YesNoDialog } from "../../utils/YesNoDialog";
+import { ResumeController } from "../../controllers/ResumeController";
 
-export class ResumeView extends WithGameConsoleView {
-  public async interact(): Promise<boolean> {
+export class ResumeView extends WithConsoleView {
+  public async interact(controller: ResumeController): Promise<void> {
     const mustResume = await new YesNoDialog().read('Do you want to resume the game?');
     if (mustResume) {
-      this.game.reset();
+      controller.reset();
+    } else {
+      controller.next();
     }
-    return mustResume;
   }
 }

@@ -1,9 +1,9 @@
 import { Color } from "../../models/Color";
 import { Combination } from "../../models/Combination";
 import { Message } from "../../utils/Message";
-import { WithGameConsoleView } from "./WithGameConsoleView";
+import { WithConsoleView } from "./WithConsoleView";
 
-export class ReadCombinationView extends WithGameConsoleView {
+export class ReadCombinationView extends WithConsoleView {
   public async read(): Promise<Color[]> {
     let proposedColors: Color[] = [];
     do {

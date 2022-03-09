@@ -1,10 +1,11 @@
+import { StartController } from "../../controllers/StartController";
 import { AskForCodeBrakerView } from "./AskForCodeBrakerView";
 import { AskForCodeMakerView } from "./AskForCodeMakerView";
-import { WithGameConsoleView } from "./WithGameConsoleView";
+import { WithConsoleView } from "./WithConsoleView";
 
-export class AskForPlayersView extends WithGameConsoleView {
-  public async interact(): Promise<void> {
-    await new AskForCodeMakerView(this.game).interact()
-    await new AskForCodeBrakerView(this.game).interact()
+export class AskForPlayersView extends WithConsoleView {
+  public async interact(controller: StartController): Promise<void> {
+    await new AskForCodeMakerView().interact(controller);
+    await new AskForCodeBrakerView().interact(controller);
   }
 }

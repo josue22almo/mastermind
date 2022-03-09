@@ -1,10 +1,11 @@
+import { InGameController } from "../../controllers/InGameController";
 import { Message } from "../../utils/Message";
-import { WithGameConsoleView } from "./WithGameConsoleView";
+import { WithConsoleView } from "./WithConsoleView";
 
-export class SecretCombinationView extends WithGameConsoleView {
-  public interact() {
+export class SecretCombinationView extends WithConsoleView {
+  public interact(controller: InGameController) {
     Message.EMPTY.writeln();
-    Message.NUM_ATTEMPTS(this.game.numOfAttempts()).writeln();
+    Message.NUM_ATTEMPTS(controller.numOfAttempts()).writeln();
     Message.SECRET_COMBINATION.writeln();
   }
 }

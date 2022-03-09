@@ -1,30 +1,32 @@
-import { Game } from "../../models/Game";
+import { Controller } from "../../controllers/Controller";
+import { InGameController } from "../../controllers/InGameController";
+import { ResumeController } from "../../controllers/ResumeController";
+import { StartController } from "../../controllers/StartController";
 import { View } from "../View";
+import { EndGameView } from "./EndGameView";
 import { PlayView } from "./PlayView";
 import { ResumeView } from "./ResumeView";
 import { StartView } from "./StartView";
 
 export class ConsoleView extends View {
-  private readonly startView: StartView;
-  private readonly playView: PlayView;
-  private readonly resumeView: ResumeView;
-
-  constructor(game: Game) {
-    super(game);
-    this.startView = new StartView(this.game);
-    this.playView = new PlayView(this.game);
-    this.resumeView = new ResumeView(this.game);
+  public async visitStartController(controller: StartController): Promise<void> {
+    await new StartView().interact(controller);
   }
 
-  public async start(): Promise<void> {
-    await this.startView.interact();
+  public async visitInGameController(controller: InGameController): Promise<void> {
+    await new PlayView().interact(controller);
   }
 
-  public play(): Promise<void> {
-    return this.playView.interact();
+  public async visitResumeController(controller: ResumeController): Promise<void> {
+    await new ResumeView().interact(controller);
   }
 
-  public resume(): Promise<boolean> {
-    return this.resumeView.interact();
+  public visitNullController(): Promise<void> {
+    new EndGameView().interact();
+    return Promise.resolve();
+  }
+
+  public async interact(controller: Controller): Promise<void> {
+    await controller.accept(this);
   }
 }

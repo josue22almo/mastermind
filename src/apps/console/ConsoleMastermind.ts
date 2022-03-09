@@ -4,6 +4,6 @@ import { Mastermind } from "../Mastermind";
 
 export class ConsoleMastermind extends Mastermind {
   protected getView(): View {
-    return new ConsoleView(this.game);
+    return new ConsoleView();
   }
 }

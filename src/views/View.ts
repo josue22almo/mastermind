@@ -1,15 +1,18 @@
-import { Game } from "../models/Game";
+import { Controller } from "../controllers/Controller";
+import { IControllerVisitor } from "../controllers/IControllerVisitor";
+import { InGameController } from "../controllers/InGameController";
+import { NullController } from "../controllers/NullController";
+import { ResumeController } from "../controllers/ResumeController";
+import { StartController } from "../controllers/StartController";
 
-export abstract class View {
-  protected readonly game: Game;
+export abstract class View implements IControllerVisitor {
+  public abstract visitStartController(controller: StartController): Promise<void>;
 
-  constructor(game: Game) {
-    this.game = game;
-  }
+  public abstract visitInGameController(controller: InGameController): Promise<void>;
 
-  public abstract start(): Promise<void>;
+  public abstract visitResumeController(controller: ResumeController): Promise<void>;
 
-  public abstract play(): Promise<void>
+  public abstract visitNullController(controller: NullController): Promise<void>;
 
-  public abstract resume(): Promise<boolean>
+  public abstract interact(controller: Controller): Promise<void>;
 }

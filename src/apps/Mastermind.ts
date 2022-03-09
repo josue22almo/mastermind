@@ -1,19 +1,19 @@
-import { Game } from "../models/Game";
+import { Logic } from "../controllers/Logic";
 import { View } from "../views/View";
 
 export abstract class Mastermind {
-  protected readonly game: Game;
+  protected readonly logic: Logic;
+  protected readonly view: View;
 
   constructor() {
-    this.game = new Game();
+    this.logic = new Logic();
+    this.view = this.getView();
   }
 
   public async play(): Promise<void> {
-    const view = this.getView();
     do {
-      await view.start();
-      await view.play();
-    } while (await view.resume())
+      await this.view.interact(this.logic.getController());
+    } while (!this.logic.isExit());
   }
 
   protected abstract getView(): View;

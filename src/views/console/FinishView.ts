@@ -1,12 +1,14 @@
+import { InGameController } from "../../controllers/InGameController";
 import { Message } from "../../utils/Message";
-import { WithGameConsoleView } from "./WithGameConsoleView";
+import { WithConsoleView } from "./WithConsoleView";
 
-export class FinishView extends WithGameConsoleView {
-  public interact() {
-    if (this.game.isSolved()) {
+export class FinishView extends WithConsoleView {
+  public interact(controller: InGameController) {
+    if (controller.isSolved()) {
       Message.CODE_BRAKER_WINS.writeln();
-    } else if (this.game.isGameOver()) {
+    } else if (controller.isGameOver()) {
       Message.CODE_BRAKER_LOSES.writeln();
     }
+    controller.next();
   }
 }

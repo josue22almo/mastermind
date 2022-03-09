@@ -14,6 +14,7 @@ export class Message {
   public static SECRET_COMBINATION = new Message(`****`);
   public static RESUME = new Message("Do you want to continue");
   public static EMPTY = new Message("");
+  public static END_GAME = new Message("--- END GAME ---");
 
   private readonly message: string;
 

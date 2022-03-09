@@ -1,11 +1,12 @@
+import { InGameController } from "../../controllers/InGameController";
 import { ResultView } from "./ResultView";
 import { SecretCombinationView } from "./SecretCombinationView";
-import { WithGameConsoleView } from "./WithGameConsoleView";
+import { WithConsoleView } from "./WithConsoleView";
 
-export class BoardView extends WithGameConsoleView {
-  public  interact() {
-    new SecretCombinationView(this.game).interact();
-    for(const result of this.game.getResults()) {
+export class BoardView extends WithConsoleView {
+  public  interact(controller: InGameController) {
+    new SecretCombinationView().interact(controller);
+    for(const result of controller.getResults()) {
       new ResultView(result).print();
     }
   }
